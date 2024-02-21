@@ -3,8 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "rm -rf build && bun build ./src/index.tsx --outdir ./build --minify && cp -R public/ build",
-    "dev": "bun build ./src/index.tsx --outdir ./build --watch"
+    "build": "rm -rf build && bun build ./src/index.tsx --outdir ./build --minify --splitting && cp -R public/ build",
+    "dev": "bun index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
