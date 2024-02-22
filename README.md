@@ -1,6 +1,6 @@
 # bun-react-csr-base
 
-To use this template to start new react ssr tailwind project from scratch:
+To use this template to start new react client side rendering project from scratch:
 
 ```bash
 bun create https://github.com/hedaukartik/bun-react-csr-base name-of-your-project
