@@ -1,8 +1,12 @@
 FROM oven/bun:1
-WORKDIR /app
+WORKDIR /
 COPY . .
 RUN bun install
+
+RUN bun run build
+
+COPY public/ build/
  
-ENV PORT 3001
+ENV PORT 3000
  
 CMD ["bun", "dev"]
