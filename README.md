@@ -1,5 +1,11 @@
 # bun-react-csr-base
 
+To use this template to start new react ssr tailwind project from scratch:
+
+```bash
+bun create https://github.com/hedaukartik/bun-react-csr-base name-of-your-project
+```
+
 To install dependencies:
 
 ```bash
