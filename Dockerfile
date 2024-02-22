@@ -9,4 +9,4 @@ COPY public/ build/
  
 ENV PORT 3000
  
-CMD ["bun", "dev"]
+CMD ["bun", "run", "prod"]
