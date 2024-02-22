@@ -1,24 +1,30 @@
 # bun-react-csr-base
 
-To use this template to start new react client side rendering project from scratch:
+## You need `bun` installed in your system for this template:
+
+```bash
+curl -fsSL https://bun.sh/install | bash # for macOS, Linux, and WSL
+```
+
+### To use this template to start new react client side rendering project from scratch:
 
 ```bash
 bun create https://github.com/hedaukartik/bun-react-csr-base name-of-your-project
 ```
 
-To install dependencies:
+### To install dependencies:
 
 ```bash
 bun install
 ```
 
-To run:
+### To run:
 
 ```bash
 bun dev
 ```
 
-To build:
+### To build:
 
 ```bash
 bun run build
