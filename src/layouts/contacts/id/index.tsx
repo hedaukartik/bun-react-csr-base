@@ -4,8 +4,12 @@ function Contact() {
   let { id } = useParams();
   return (
     <div>
-      <h1>{id}</h1>
-      <img src={`https://picsum.photos/id/${id}/200/300`} />
+      <h1>Contact Details for: {id}</h1>
+      <img
+        src={`https://picsum.photos/id/${id}/200/300`}
+        loading="lazy"
+        alt={id}
+      />
     </div>
   );
 }

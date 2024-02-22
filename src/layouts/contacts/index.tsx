@@ -2,13 +2,19 @@ import { Link } from "react-router-dom";
 
 function Contacts() {
   return (
-    <ul>
-      {[1, 2, 3, 4, 5].map((contact) => (
-        <li key={contact}>
-          <Link to={`${contact}`}>{contact}</Link>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h1>All Contacts</h1>
+      <ul>
+        {Array.from(
+          { length: 10 },
+          () => Math.floor(Math.random() * 100) + 1
+        ).map((contact) => (
+          <li key={contact}>
+            <Link to={`${contact}`}>{contact}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
