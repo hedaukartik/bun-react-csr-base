@@ -1,5 +1,7 @@
 {
   "name": "bun-react-csr-base",
+  "description": "Client side rendering react app tooled with bun",
+  "version": "0.0.1",
   "module": "index.ts",
   "type": "module",
   "scripts": {
@@ -7,6 +9,12 @@
     "dev": "bun run build && cp -r public/ build && bun index.ts --watch",
     "prod": "bun index.ts --watch"
   },
+  "keywords": [
+    "bun.sh",
+    "bun",
+    "react",
+    "csr"
+  ],
   "devDependencies": {
     "@types/bun": "latest",
     "@types/react-dom": "^18.2.19"
