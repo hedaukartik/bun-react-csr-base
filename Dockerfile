@@ -1,7 +1,8 @@
 FROM oven/bun:1
 WORKDIR /
 COPY . .
-RUN bun install
+RUN rm -rf node_modules && \
+    bun install --ci
 
 RUN bun run build
 
