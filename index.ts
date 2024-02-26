@@ -1,7 +1,37 @@
 import path from "path";
+import { watch } from "fs";
 
 const PORT = process.env.PORT || 3000;
 const BUILD_PATH = "./build";
+let build = 0;
+
+function runBuild() {
+  Bun.build({
+    entrypoints: ["./src/index.tsx"],
+    outdir: BUILD_PATH,
+    minify: true,
+    splitting: true,
+  });
+}
+
+const srcWatcher = watch(
+  `${import.meta.dir}/src`,
+  { recursive: true },
+  (event, filename) => {
+    runBuild();
+    console.log(`Detected ${event} in ${filename}`);
+  }
+);
+
+process.on("SIGINT", () => {
+  srcWatcher.close();
+  process.exit(0);
+});
+
+if (build === 0) {
+  runBuild();
+  build = 1;
+}
 
 Bun.serve({
   port: PORT,
