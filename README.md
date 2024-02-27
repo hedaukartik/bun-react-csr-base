@@ -5,7 +5,7 @@
   <a href="https://bun.sh/" rel="noopener" target="_blank" ><img width="200" src="https://bun.sh/logo-square.png" alt="bun"></a>
 </p>
 
-<h1 align="center">React Client side rendering tooled with Bun</h1>
+<h1 align="center">React client side rendering apps tooled with Bun</h1>
 
 <div align="center">
 
