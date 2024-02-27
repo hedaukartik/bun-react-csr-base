@@ -1,4 +1,17 @@
-# bun-react-csr-base
+<br/>
+<br/>
+<p align="center" style="box-shadow: 2px">
+  <a href="https://react.dev/" rel="noopener" target="_blank" ><img width="200" src="https://github.com/hedaukartik/bun-react-csr-base/assets/35377972/5f7fac52-5225-4bb2-83a9-1c597d51cebc" alt="react"></a>
+  <a href="https://bun.sh/" rel="noopener" target="_blank" ><img width="200" src="https://bun.sh/logo-square.png" alt="bun"></a>
+</p>
+
+<h1 align="center">React Client side rendering tooled with Bun</h1>
+
+<div align="center">
+
+Powerful React app building using Bun runtime, bunder, transpiler, package manager and test runner.
+
+</div>
 
 ## You need `bun` installed in your system for this template:
 
@@ -22,12 +35,6 @@ bun install
 
 ```bash
 bun dev
-```
-
-### To build:
-
-```bash
-bun run build
 ```
 
 This project was created using `bun init` in bun v1.0.25. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
