@@ -1,55 +1,65 @@
 import path from "path";
-import { watch } from "fs";
+import { statSync } from "fs";
+import { startBuilder } from "./builder";
+
+const PROJECT_ROOT = import.meta.dir;
+const PUBLIC_DIR = path.resolve(PROJECT_ROOT, "public");
+const BUILD_DIR = path.resolve(PROJECT_ROOT, "build");
 
 const PORT = process.env.PORT || 3000;
-const BUILD_PATH = "./build";
-let build = 0;
 
-function runBuild() {
-  Bun.build({
-    entrypoints: ["./src/index.tsx"],
-    outdir: BUILD_PATH,
-    minify: true,
-    splitting: true,
-  });
-}
+// start build
+startBuilder(BUILD_DIR);
 
-const srcWatcher = watch(
-  `${import.meta.dir}/src`,
-  { recursive: true },
-  (event, filename) => {
-    runBuild();
-    console.log(`Detected ${event} in ${filename}`);
+function serveFromDir(config: {
+  directory: string;
+  path: string;
+}): Response | null {
+  let basePath = path.join(config.directory, config.path);
+  const suffixes = ["", ".html", "index.html"];
+
+  for (const suffix of suffixes) {
+    try {
+      const pathWithSuffix = path.join(basePath, suffix);
+      const stat = statSync(pathWithSuffix);
+      if (stat && stat.isFile()) {
+        return new Response(Bun.file(pathWithSuffix));
+      }
+    } catch (err) {}
   }
-);
 
-process.on("SIGINT", () => {
-  srcWatcher.close();
-  process.exit(0);
-});
-
-if (build === 0) {
-  runBuild();
-  build = 1;
+  return null;
 }
 
 Bun.serve({
   port: PORT,
   fetch(req) {
-    const url = new URL(req.url);
-    if (
-      url.pathname &&
-      url.pathname !== "/" &&
-      Bun.file(BUILD_PATH + path.normalize(url.pathname)).size > 0
-    ) {
-      return new Response(Bun.file(BUILD_PATH + path.normalize(url.pathname)));
-    }
-    /*
-     * All other routes will be manage by react-router-dom further
-     * Also 404, file not found will be handled by react-react-dom with respect to CSR
-     */
+    let reqPath = new URL(req.url).pathname;
 
-    return new Response(Bun.file(BUILD_PATH + "/index.html"));
+    // check public
+    const publicResponse = serveFromDir({
+      directory: PUBLIC_DIR,
+      path: reqPath,
+    });
+    if (publicResponse) return publicResponse;
+
+    // check built assets
+    const buildResponse = serveFromDir({
+      directory: BUILD_DIR,
+      path: reqPath,
+    });
+    if (buildResponse) return buildResponse;
+
+    // finally serve index.html for any other request as its CSR
+    const indexResponse = serveFromDir({
+      directory: PUBLIC_DIR,
+      path: "/index.html",
+    });
+    if (indexResponse) return indexResponse;
+
+    return new Response("Something went wrong!", {
+      status: 404,
+    });
   },
 });
 
