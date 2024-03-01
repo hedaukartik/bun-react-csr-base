@@ -1,6 +1,12 @@
 import { watch } from "fs";
 
-export function startBuilder(BUILD_DIR: string) {
+export function startBuilder({
+  BUILD_DIR,
+  PORT,
+}: {
+  BUILD_DIR: string;
+  PORT: string | number;
+}) {
   let build = 0;
 
   async function runBuild() {
@@ -11,10 +17,14 @@ export function startBuilder(BUILD_DIR: string) {
       splitting: true,
       publicPath: "./",
     });
+
+    console.log(
+      "React App is running on port " + `${process.env.HOST_URL}:` + PORT
+    );
   }
 
   const srcWatcher = watch(
-    `${import.meta.dir}/src`,
+    `./src`,
     { recursive: true },
     async (event, filename) => {
       await runBuild();

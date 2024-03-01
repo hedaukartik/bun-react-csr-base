@@ -2,14 +2,13 @@ import path from "path";
 import { statSync } from "fs";
 import { startBuilder } from "./builder";
 
-const PROJECT_ROOT = import.meta.dir;
-const PUBLIC_DIR = path.resolve(PROJECT_ROOT, "public");
-const BUILD_DIR = path.resolve(PROJECT_ROOT, "build");
+const PUBLIC_DIR = "./public";
+const BUILD_DIR = "./build";
 
 const PORT = process.env.PORT || 3000;
 
 // start build
-startBuilder(BUILD_DIR);
+startBuilder({ BUILD_DIR, PORT });
 
 function serveFromDir(config: {
   directory: string;
@@ -63,7 +62,3 @@ Bun.serve({
     });
   },
 });
-
-console.log(
-  "React App is running on port " + `${process.env.HOST_URL}:` + PORT
-);

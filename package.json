@@ -5,7 +5,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "rm -rf build && bun run index.ts --watch --hot"
+    "dev": "rm -rf build && bun run scripts/index.ts --watch --hot"
   },
   "keywords": [
     "bun.sh",
