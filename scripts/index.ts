@@ -34,7 +34,6 @@ Bun.serve({
   port: PORT,
   fetch(req) {
     let reqPath = new URL(req.url).pathname;
-    console.log({ reqPath });
 
     // check public
     const publicResponse = serveFromDir({
