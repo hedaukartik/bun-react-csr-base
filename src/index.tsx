@@ -1,9 +1,11 @@
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Contacts from "./layouts/contacts";
-import Home from "./layouts/home";
 import ErrorPage from "./components/errorPage";
-import Contact from "./layouts/contacts/id";
+import { lazy, Suspense } from "react";
+
+const Home = lazy(() => import("./layouts/home"));
+const Contacts = lazy(() => import("./layouts/contacts"));
+const Contact = lazy(() => import("./layouts/contacts/id"));
 
 const router = createBrowserRouter([
   {
@@ -24,4 +26,8 @@ const router = createBrowserRouter([
 const rootDiv = document.getElementById("root") as HTMLElement;
 const root = ReactDOM.createRoot(rootDiv);
 
-root.render(<RouterProvider router={router} />);
+root.render(
+  <Suspense fallback={<>Loading...</>}>
+    <RouterProvider router={router} />
+  </Suspense>
+);

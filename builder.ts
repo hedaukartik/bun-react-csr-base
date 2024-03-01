@@ -9,6 +9,7 @@ export function startBuilder(BUILD_DIR: string) {
       outdir: BUILD_DIR,
       minify: true,
       splitting: true,
+      publicPath: "./",
     });
   }
 
