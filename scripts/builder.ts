@@ -23,19 +23,21 @@ export function startBuilder({
     );
   }
 
-  const srcWatcher = watch(
-    `./src`,
-    { recursive: true },
-    async (event, filename) => {
-      await runBuild();
-      console.log(`Detected ${event} in ${filename}`);
-    }
-  );
+  if (process.env.NODE_ENV === "development") {
+    const srcWatcher = watch(
+      `./src`,
+      { recursive: true },
+      async (event, filename) => {
+        await runBuild();
+        console.log(`Detected ${event} in ${filename}`);
+      }
+    );
 
-  process.on("SIGINT", () => {
-    srcWatcher.close();
-    process.exit(0);
-  });
+    process.on("SIGINT", () => {
+      srcWatcher.close();
+      process.exit(0);
+    });
+  }
 
   if (build === 0) {
     runBuild();
