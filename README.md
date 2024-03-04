@@ -48,4 +48,5 @@ This project was created using `bun init` in bun v1.0.25. [Bun](https://bun.sh) 
 * [x] Routing using react-router-dom during CSR.
 * [x] Page refresh on sub-routes should show the correct screen and not file not found.
 * [x] If any file is changed in the `./src` folder, a new build should be created to show the latest changes.
-* [ ] When lazy loading components, bun bundler does not import the files as expected to fix. https://github.com/oven-sh/bun/issues/9151
+* [x] When lazy loading components, bun bundler does not import the files as expected to fix. https://github.com/oven-sh/bun/issues/9151
+* [ ] Fix css, scss loader issues.
