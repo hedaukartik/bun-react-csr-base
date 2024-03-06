@@ -5,7 +5,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "rm -rf build && bun run scripts/index.ts --watch --hot"
+    "dev": "rm -rf build && mkdir ./build && bun run scripts/index.ts --watch --hot"
   },
   "keywords": [
     "bun.sh",
@@ -23,6 +23,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.1"
+    "react-router-dom": "^6.22.1",
+    "sass": "^1.71.1"
   }
 }

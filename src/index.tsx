@@ -1,7 +1,8 @@
+import { lazy, Suspense } from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/errorPage";
-import { lazy, Suspense } from "react";
+import "./index.scss";
 
 const Home = lazy(() => import("./layouts/home"));
 const Contacts = lazy(() => import("./layouts/contacts"));

@@ -1,4 +1,27 @@
 import { watch } from "fs";
+import type { BunPlugin } from "bun";
+const sass = await import("sass");
+
+const path = "./build/styles.css";
+
+await Bun.write(path, "", { createPath: true });
+
+let totalCompiledCSS = "";
+
+const sassPlugin: BunPlugin = {
+  name: "sass",
+  setup(build) {
+    build.onLoad({ filter: /\.scss$/ }, async (args) => {
+      const compiledCSS = sass.compile(args.path, { style: "compressed" });
+      totalCompiledCSS = totalCompiledCSS.concat(compiledCSS.css);
+      await Bun.write(path, totalCompiledCSS);
+      return {
+        contents: compiledCSS.css,
+        loader: "file",
+      };
+    });
+  },
+};
 
 export function startBuilder({
   BUILD_DIR,
@@ -16,6 +39,7 @@ export function startBuilder({
       minify: true,
       splitting: true,
       publicPath: "./",
+      plugins: [sassPlugin],
     });
 
     console.log(
@@ -28,6 +52,7 @@ export function startBuilder({
       `./src`,
       { recursive: true },
       async (event, filename) => {
+        totalCompiledCSS = "";
         await runBuild();
         console.log(`Detected ${event} in ${filename}`);
       }
