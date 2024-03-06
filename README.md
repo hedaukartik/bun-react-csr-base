@@ -9,7 +9,9 @@
 
 <div align="center">
 
-Powerful React app building using Bun runtime, bunder, transpiler, package manager and test runner.
+Powerful React app building using Bun runtime, bunder, transpiler, package manager, and test runner.
+
+`bun` `react` `csr` `typescript` `scss` `react-router-dom-v6`
 
 </div>
 
@@ -49,4 +51,4 @@ This project was created using `bun init` in bun v1.0.25. [Bun](https://bun.sh) 
 * [x] Page refresh on sub-routes should show the correct screen and not file not found.
 * [x] If any file is changed in the `./src` folder, a new build should be created to show the latest changes.
 * [x] When lazy loading components, bun bundler does not import the files as expected to fix. https://github.com/oven-sh/bun/issues/9151
-* [ ] Fix css, scss loader issues.
+* [x] Fix css, scss loader issues.
