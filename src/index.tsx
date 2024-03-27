@@ -1,30 +1,30 @@
-import { lazy, Suspense } from "react";
-import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./components/errorPage";
-import "./index.scss";
+import { lazy, Suspense } from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ErrorPage from './components/errorPage';
+import './index.scss';
 
-const Home = lazy(() => import("./layouts/home"));
-const Contacts = lazy(() => import("./layouts/contacts"));
-const Contact = lazy(() => import("./layouts/contacts/id"));
+const Home = lazy(() => import('./layouts/home'));
+const Contacts = lazy(() => import('./layouts/contacts'));
+const Contact = lazy(() => import('./layouts/contacts/id'));
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Home />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/contacts",
+    path: '/contacts',
     element: <Contacts />,
   },
   {
-    path: "/contacts/:id",
+    path: '/contacts/:id',
     element: <Contact />,
   },
 ]);
 
-const rootDiv = document.getElementById("root") as HTMLElement;
+const rootDiv = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(rootDiv);
 
 root.render(
